@@ -30,8 +30,8 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      content: "hosea@hostech.africa",
-      link: "mailto:hosea@hostech.africa",
+      content: "hoseamuriira20@gmail.com",
+      link: "mailto:hoseamuriira20@gmail.com",
     },
     {
       icon: Phone,
