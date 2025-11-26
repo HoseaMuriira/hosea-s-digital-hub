@@ -2,7 +2,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Code, Briefcase, Users, MessageSquare, Lightbulb, Target } from "lucide-react";
+import { Code, Briefcase, Users, MessageSquare, Lightbulb, Target, Award } from "lucide-react";
+import htmlCert from "@/assets/certificate-html.png";
+import pythonCert from "@/assets/certificate-python.png";
 
 const Skills = () => {
   const technicalSkills = [
@@ -113,6 +115,34 @@ const Skills = () => {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </section>
+
+          {/* Certifications */}
+          <section className="mb-20">
+            <div className="flex items-center gap-3 mb-12">
+              <Award className="w-8 h-8 text-primary" />
+              <h2 className="text-3xl font-bold">Certifications</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="overflow-hidden hover:shadow-elegant transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <img 
+                    src={htmlCert} 
+                    alt="HTML Certificate of Completion from Codeliber" 
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                  />
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden hover:shadow-elegant transition-all duration-300 group">
+                <CardContent className="p-0">
+                  <img 
+                    src={pythonCert} 
+                    alt="Python Certificate of Completion from Codeliber" 
+                    className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                  />
+                </CardContent>
+              </Card>
             </div>
           </section>
 
