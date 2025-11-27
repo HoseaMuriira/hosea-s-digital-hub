@@ -2,59 +2,17 @@ import { ArrowRight, Code, Briefcase, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Navbar from "@/components/Navbar";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
+import { CommentsSection } from "@/components/CommentsSection";
 import Footer from "@/components/Footer";
-import hoseaProfile from "@/assets/hosea-profile-2.jpg";
+import { useVisitorTracking } from "@/hooks/useVisitorTracking";
 
 const Home = () => {
+  useVisitorTracking();
+
   return (
     <div className="min-h-screen">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-        <div className="absolute inset-0 bg-gradient-hero opacity-10"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-                Hosea Muriira
-              </h1>
-              <p className="text-2xl md:text-3xl text-muted-foreground">
-                Empowering Growth through
-              </p>
-              <p className="text-2xl md:text-3xl font-semibold bg-gradient-accent bg-clip-text text-transparent">
-                Technology, Leadership & Vision
-              </p>
-              <p className="text-lg text-muted-foreground max-w-lg">
-                Developer. Entrepreneur. Leader. Transforming ideas into reality through code, strategy, and innovation.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link to="/about">
-                  <Button size="lg" className="shadow-elegant">
-                    Explore My World <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link to="/contact">
-                  <Button size="lg" variant="outline">
-                    Get In Touch
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            <div className="animate-fade-in flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-hero rounded-full blur-3xl opacity-20 animate-float"></div>
-                <img
-                  src={hoseaProfile}
-                  alt="Hosea Muriira"
-                  className="relative rounded-full w-80 h-80 object-cover border-4 border-accent shadow-elegant"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlideshow />
 
       {/* Features Section */}
       <section className="py-20 bg-secondary/30">
@@ -110,6 +68,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Comments Section */}
+      <CommentsSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-hero text-white">
