@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { MessageSquare, User } from "lucide-react";
+import { MessageSquare, User, Trash2, Shield } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 interface Comment {
@@ -20,11 +20,27 @@ export const CommentsSection = () => {
   const [username, setUsername] = useState("");
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
     loadComments();
+    checkAdminStatus();
   }, []);
+
+  const checkAdminStatus = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id)
+      .eq("role", "admin")
+      .single();
+
+    setIsAdmin(!!data);
+  };
 
   const loadComments = async () => {
     const { data, error } = await supabase
@@ -76,12 +92,39 @@ export const CommentsSection = () => {
     setLoading(false);
   };
 
+  const handleDelete = async (commentId: string) => {
+    const { error } = await supabase
+      .from("comments")
+      .delete()
+      .eq("id", commentId);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete comment",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "Comment deleted successfully",
+      });
+      loadComments();
+    }
+  };
+
   return (
     <section className="py-20 px-4 bg-muted/30">
       <div className="container max-w-4xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
           <MessageSquare className="w-8 h-8 text-primary" />
-          <h2 className="text-3xl font-bold">Comments</h2>
+          <h2 className="text-3xl font-bold text-foreground">Comments</h2>
+          {isAdmin && (
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">
+              <Shield className="w-4 h-4" />
+              Admin
+            </span>
+          )}
         </div>
 
         <Card className="mb-8">
@@ -114,7 +157,7 @@ export const CommentsSection = () => {
 
         <div className="space-y-4">
           {comments.map((c) => (
-            <Card key={c.id}>
+            <Card key={c.id} className="border-border">
               <CardContent className="pt-6">
                 <div className="flex items-start gap-3">
                   <div className="bg-primary/10 p-2 rounded-full">
@@ -129,6 +172,16 @@ export const CommentsSection = () => {
                     </div>
                     <p className="text-foreground/90">{c.comment}</p>
                   </div>
+                  {isAdmin && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => handleDelete(c.id)}
+                      className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>

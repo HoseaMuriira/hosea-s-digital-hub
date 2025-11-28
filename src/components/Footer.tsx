@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-4">
+            <h3 className="text-2xl font-bold text-primary mb-4">
               HOSTECH
             </h3>
             <p className="text-muted-foreground text-sm">
@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Services</h4>
+            <h4 className="font-semibold text-foreground mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
               <li className="text-muted-foreground">Web Development</li>
               <li className="text-muted-foreground">Consulting</li>
@@ -48,7 +48,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Connect</h4>
+            <h4 className="font-semibold text-foreground mb-4">Connect</h4>
             <div className="flex space-x-4">
               <a
                 href="https://github.com"
