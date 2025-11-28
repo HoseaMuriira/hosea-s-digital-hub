@@ -34,22 +34,22 @@ export const HeroSlideshow = () => {
             alt={`Slide ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/80" />
         </div>
       ))}
       
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
+        <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in drop-shadow-lg">
           Hostech
         </h1>
-        <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
+        <p className="text-xl md:text-2xl text-primary-foreground/95 mb-8 max-w-2xl drop-shadow-md">
           Empowering Growth through Technology, Leadership & Vision
         </p>
         <div className="flex gap-4">
           <Button
             size="lg"
             onClick={() => navigate("/about")}
-            className="bg-primary hover:bg-primary/90"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-elegant"
           >
             Learn More
           </Button>
@@ -57,7 +57,7 @@ export const HeroSlideshow = () => {
             size="lg"
             variant="outline"
             onClick={() => navigate("/auth")}
-            className="bg-white/10 backdrop-blur-sm text-white border-white hover:bg-white/20"
+            className="bg-secondary/20 backdrop-blur-sm text-primary-foreground border-primary-foreground/30 hover:bg-secondary/30"
           >
             Login / Sign Up
           </Button>
@@ -72,8 +72,8 @@ export const HeroSlideshow = () => {
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${
               index === currentSlide
-                ? "bg-white w-8"
-                : "bg-white/50 hover:bg-white/75"
+                ? "bg-accent w-8"
+                : "bg-muted-foreground hover:bg-accent/75"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
