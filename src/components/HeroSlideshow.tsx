@@ -5,8 +5,10 @@ import profile1 from "@/assets/hosea-profile-1.jpg";
 import profile2 from "@/assets/hosea-profile-2.jpg";
 import profile3 from "@/assets/hosea-profile-3.jpg";
 import techAI from "@/assets/tech-ai.jpg";
+import slide4 from "@/assets/hosea-slide-4.jpg";
+import slide5 from "@/assets/hosea-slide-5.jpg";
 
-const slides = [profile1, profile2, profile3, techAI];
+const slides = [profile1, profile2, profile3, techAI, slide4, slide5];
 
 export const HeroSlideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
