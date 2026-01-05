@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, BookOpen, Users, TrendingUp } from "lucide-react";
-import hoseaProfile from "@/assets/hosea-profile-1.jpg";
+import hoseaProfile from "@/assets/hosea-about.jpg";
 
 const About = () => {
   return (
