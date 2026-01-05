@@ -26,6 +26,39 @@ export const CommentsSection = () => {
   useEffect(() => {
     loadComments();
     checkAdminStatus();
+
+    // Subscribe to real-time comment changes
+    const channel = supabase
+      .channel('comments-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'comments'
+        },
+        (payload) => {
+          console.log('New comment received:', payload);
+          setComments((prev) => [payload.new as Comment, ...prev]);
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'comments'
+        },
+        (payload) => {
+          console.log('Comment deleted:', payload);
+          setComments((prev) => prev.filter((c) => c.id !== payload.old.id));
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const checkAdminStatus = async () => {
@@ -37,7 +70,7 @@ export const CommentsSection = () => {
       .select("role")
       .eq("user_id", user.id)
       .eq("role", "admin")
-      .single();
+      .maybeSingle();
 
     setIsAdmin(!!data);
   };
@@ -86,7 +119,7 @@ export const CommentsSection = () => {
       });
       setUsername("");
       setComment("");
-      loadComments();
+      // Real-time subscription will handle adding the new comment
     }
 
     setLoading(false);
@@ -109,7 +142,7 @@ export const CommentsSection = () => {
         title: "Success",
         description: "Comment deleted successfully",
       });
-      loadComments();
+      // Real-time subscription will handle removing the deleted comment
     }
   };
 
