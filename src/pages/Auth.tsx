@@ -38,26 +38,57 @@ const Auth = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${window.location.origin}/`,
-      },
-    });
-
-    if (error) {
+    
+    if (!email || !password) {
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Missing Information",
+        description: "Please enter both email and password.",
         variant: "destructive",
       });
-    } else {
+      return;
+    }
+
+    if (password.length < 6) {
       toast({
-        title: "Success",
-        description: "Account created! You can now log in.",
+        title: "Password Too Short",
+        description: "Password must be at least 6 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+        },
+      });
+
+      if (error) {
+        let errorMessage = error.message;
+        if (error.message.includes("already registered")) {
+          errorMessage = "This email is already registered. Please sign in instead.";
+        }
+        toast({
+          title: "Sign Up Failed",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      } else if (data.user) {
+        toast({
+          title: "Account Created",
+          description: "Welcome! You are now logged in.",
+        });
+      }
+    } catch (err) {
+      toast({
+        title: "Connection Error",
+        description: "Unable to connect. Please check your internet connection and try again.",
+        variant: "destructive",
       });
     }
 
@@ -66,23 +97,47 @@ const Auth = () => {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
+    
+    if (!email || !password) {
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Missing Information",
+        description: "Please enter both email and password.",
         variant: "destructive",
       });
-    } else {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        let errorMessage = error.message;
+        if (error.message.includes("Invalid login credentials")) {
+          errorMessage = "Invalid email or password. Please check your credentials and try again.";
+        } else if (error.message.includes("Email not confirmed")) {
+          errorMessage = "Please confirm your email address before signing in.";
+        }
+        toast({
+          title: "Sign In Failed",
+          description: errorMessage,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Welcome Back",
+          description: "You have successfully signed in.",
+        });
+      }
+    } catch (err) {
       toast({
-        title: "Success",
-        description: "Logged in successfully!",
+        title: "Connection Error",
+        description: "Unable to connect. Please check your internet connection and try again.",
+        variant: "destructive",
       });
     }
 
