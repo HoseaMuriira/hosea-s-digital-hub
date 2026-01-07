@@ -1,1 +1,4 @@
 project_id = "llpuyzmhslserfnrxkpy"
+
+[functions.notify-subscriber]
+verify_jwt = false

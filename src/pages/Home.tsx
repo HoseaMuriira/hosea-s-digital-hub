@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { CommentsSection } from "@/components/CommentsSection";
 import Footer from "@/components/Footer";
+import { SubscribeButton } from "@/components/SubscribeButton";
 import { useVisitorTracking } from "@/hooks/useVisitorTracking";
 
 const Home = () => {
@@ -90,6 +91,7 @@ const Home = () => {
       </section>
 
       <Footer />
+      <SubscribeButton />
     </div>
   );
 };
