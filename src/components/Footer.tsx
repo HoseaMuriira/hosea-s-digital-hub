@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
+import { VisitorCounter } from "./VisitorCounter";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -88,8 +89,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
+        <div className="border-t mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>© {currentYear} Hosea Muriira. All rights reserved.</p>
+          <VisitorCounter />
         </div>
       </div>
     </footer>
