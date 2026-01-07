@@ -146,24 +146,42 @@ const Auth = () => {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/`,
-    });
-
-    if (error) {
+    
+    if (!email) {
       toast({
-        title: "Error",
-        description: error.message,
+        title: "Missing Email",
+        description: "Please enter your email address.",
         variant: "destructive",
       });
-    } else {
-      toast({
-        title: "Success",
-        description: "Password reset email sent! Check your inbox.",
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth`,
       });
-      setResetMode(false);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Success",
+          description: "Password reset email sent! Check your inbox.",
+        });
+        setResetMode(false);
+      }
+    } catch (err) {
+      toast({
+        title: "Connection Error",
+        description: "Unable to connect. Please try again.",
+        variant: "destructive",
+      });
     }
 
     setLoading(false);
