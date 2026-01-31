@@ -7,8 +7,13 @@ import profile3 from "@/assets/hosea-profile-3.jpg";
 import techAI from "@/assets/tech-ai.jpg";
 import slide4 from "@/assets/hosea-slide-4.jpg";
 import slide5 from "@/assets/hosea-slide-5.jpg";
+import chess1 from "@/assets/hosea-chess-1.jpg";
+import chess2 from "@/assets/hosea-chess-2.jpg";
+import future1 from "@/assets/hosea-future-1.jpg";
+import future2 from "@/assets/hosea-future-2.jpg";
+import future3 from "@/assets/hosea-future-3.jpg";
 
-const slides = [profile1, profile2, profile3, techAI, slide4, slide5];
+const slides = [profile1, profile2, profile3, techAI, slide4, slide5, chess1, chess2, future1, future2, future3];
 
 export const HeroSlideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
