@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import profile1 from "@/assets/hosea-profile-1.jpg";
 import profile2 from "@/assets/hosea-profile-2.jpg";
 import profile3 from "@/assets/hosea-profile-3.jpg";
 import techAI from "@/assets/tech-ai.jpg";
@@ -13,7 +12,7 @@ import future1 from "@/assets/hosea-future-1.jpg";
 import future2 from "@/assets/hosea-future-2.jpg";
 import future3 from "@/assets/hosea-future-3.jpg";
 
-const slides = [profile1, profile2, profile3, techAI, slide4, slide5, chess1, chess2, future1, future2, future3];
+const slides = [profile2, profile3, techAI, slide4, slide5, chess1, chess2, future1, future2, future3];
 
 export const HeroSlideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
