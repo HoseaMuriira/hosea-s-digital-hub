@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
+import { BirthdayBanner } from "@/components/BirthdayBanner";
 import { CommentsSection } from "@/components/CommentsSection";
 import Footer from "@/components/Footer";
 import { SubscribeButton } from "@/components/SubscribeButton";
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <HeroSlideshow />
+      <BirthdayBanner />
 
       {/* Features Section */}
       <section className="py-20 bg-secondary/30">
