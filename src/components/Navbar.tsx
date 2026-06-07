@@ -114,6 +114,7 @@ const Navbar = () => {
                 Admin
               </Link>
             )}
+            <ServicesPopup />
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-2">
                 <LogOut className="w-4 h-4" />
