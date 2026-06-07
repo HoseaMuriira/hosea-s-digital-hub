@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { BirthdayBanner } from "@/components/BirthdayBanner";
 import { CommentsSection } from "@/components/CommentsSection";
 import Footer from "@/components/Footer";
 import { SubscribeButton } from "@/components/SubscribeButton";
@@ -15,12 +14,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      <HeroSlideshow />
-      <BirthdayBanner />
-
-      {/* Digital Services Banner */}
+      {/* Digital Services Banner - always on top */}
       <section className="bg-gradient-hero text-white py-6">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-4 pt-16 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
             <h3 className="text-lg md:text-xl font-bold">
               HOSTECH DIGITAL SERVICES
@@ -32,6 +28,8 @@ const Home = () => {
           <ServicesPopup />
         </div>
       </section>
+
+      <HeroSlideshow />
 
       {/* Features Section */}
       <section className="py-20 bg-secondary/30">
