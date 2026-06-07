@@ -18,6 +18,21 @@ const Home = () => {
       <HeroSlideshow />
       <BirthdayBanner />
 
+      {/* Digital Services Banner */}
+      <section className="bg-gradient-hero text-white py-6">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <h3 className="text-lg md:text-xl font-bold">
+              HOSTECH DIGITAL SERVICES
+            </h3>
+            <p className="text-white/90 text-sm">
+              KRA, eCitizen, HELB, Business Registrations & more
+            </p>
+          </div>
+          <ServicesPopup />
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20 bg-secondary/30">
         <div className="container mx-auto px-4">
