@@ -4,6 +4,7 @@ import { Menu, X, LogOut, User, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { ServicesPopup } from "@/components/ServicesPopup";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
