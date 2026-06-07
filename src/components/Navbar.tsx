@@ -170,6 +170,9 @@ const Navbar = () => {
                 Admin
               </Link>
             )}
+            <div className="px-4 py-2">
+              <ServicesPopup />
+            </div>
             {user ? (
               <Button variant="ghost" size="sm" onClick={handleLogout} className="w-full gap-2">
                 <LogOut className="w-4 h-4" />
