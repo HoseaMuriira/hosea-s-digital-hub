@@ -151,7 +151,7 @@ export const ServicesPopup = () => {
             </div>
             <div className="flex items-center justify-center gap-2">
               <MapPin className="w-4 h-4 text-primary" />
-              <span>Kayole & Online Services Available</span>
+              <span>Mikinduri & Online Services Available</span>
             </div>
           </div>
 
