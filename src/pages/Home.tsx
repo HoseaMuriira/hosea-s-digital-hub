@@ -8,6 +8,7 @@ import { CommentsSection } from "@/components/CommentsSection";
 import Footer from "@/components/Footer";
 import { SubscribeButton } from "@/components/SubscribeButton";
 import { useVisitorTracking } from "@/hooks/useVisitorTracking";
+import { ServicesPopup } from "@/components/ServicesPopup";
 
 const Home = () => {
   useVisitorTracking();
